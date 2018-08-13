@@ -1,4 +1,5 @@
-const copy = require("recursive-copy");
+var copy = require("recursive-copy");
+
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 const figlet = require("figlet");
@@ -8,7 +9,7 @@ const init = () => {
   console.log(
     chalk.green(
       figlet.textSync("recursive-copy", {
-        font: "Standard",
+        font: "Ghost",
         horizontalLayout: "default",
         verticalLayout: "default"
       })
@@ -21,12 +22,12 @@ const askQuestions = () => {
     {
       name: "from",
       type: "input",
-      message: "full path from: "
+      message: "full path from"
     },
     {
       name: "to",
       type: "input",
-      message: "full path to: "
+      message: "full path to"
     }
   ];
   return inquirer.prompt(questions);
@@ -43,10 +44,7 @@ const run = async () => {
   const answers = await askQuestions();
   const { from, to } = answers;
 
-  copy(from, to, options)
-    .on(copy.events.COPY_FILE_COMPLETE, function(copyOperation) {
-      console.info("Copied to " + copyOperation.dest);
-    })
+  copy("E:/officeworks", "D:/repo/officeworks", options)
     .then(function(results) {
       console.info("Copied " + results.length + " files");
     })

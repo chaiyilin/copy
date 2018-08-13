@@ -8,7 +8,7 @@ const init = () => {
   console.log(
     chalk.green(
       figlet.textSync("recursive-copy", {
-        font: "Standard",
+        font: "Ghost",
         horizontalLayout: "default",
         verticalLayout: "default"
       })
@@ -21,12 +21,12 @@ const askQuestions = () => {
     {
       name: "from",
       type: "input",
-      message: "full path from: "
+      message: "full path from"
     },
     {
       name: "to",
       type: "input",
-      message: "full path to: "
+      message: "full path to"
     }
   ];
   return inquirer.prompt(questions);
@@ -44,9 +44,6 @@ const run = async () => {
   const { from, to } = answers;
 
   copy(from, to, options)
-    .on(copy.events.COPY_FILE_COMPLETE, function(copyOperation) {
-      console.info("Copied to " + copyOperation.dest);
-    })
     .then(function(results) {
       console.info("Copied " + results.length + " files");
     })

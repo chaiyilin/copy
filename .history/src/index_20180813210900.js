@@ -44,9 +44,6 @@ const run = async () => {
   const { from, to } = answers;
 
   copy(from, to, options)
-    .on(copy.events.COPY_FILE_COMPLETE, function(copyOperation) {
-      console.info("Copied to " + copyOperation.dest);
-    })
     .then(function(results) {
       console.info("Copied " + results.length + " files");
     })
